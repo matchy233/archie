@@ -22,7 +22,7 @@
 
 html {
   color: var(--text-base);
-  font-family: "Roboto Mono", monospace;
+  font-family: "Roboto Mono", "Noto Sans SC", monospace;
   font-weight: 400;
   font-size: 0.9rem;
   line-height: 1.6em;
