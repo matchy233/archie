@@ -3,9 +3,13 @@
 		<a href="{{ absURL "/" }}">{{ .Site.Title }}</a>
 	</div>
 	<nav>
-		{{ range .Site.Menus.main }}
-		<a href="{{ .URL }}">{{ .Name }}</a>
-		{{ end }}
+		{{ range $index, $elem := .Site.Menus.main }}
+      <span>
+        <a href="{{ .URL }}">{{ .Name }}</a>
+        <!-- add "|" if not last item -->
+        {{ if ne $index (sub (len $.Site.Menus.main) 1) }} | {{ end }}
+      </span>
+      {{ end }}
 		{{ if eq .Site.Params.mode "toggle" -}}
         | <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
 		<script src="{{ absURL "js/themetoggle.js" }}"></script>
