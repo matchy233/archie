@@ -6,17 +6,18 @@
   --text-base-inv: var(--ctp-latte-text);
   --text-strong: #fff;
   --text-strong-inv: #000;
-  --text-subtext: var(--ctp-frappe-overlay0);
-  --border-cl: var(--ctp-frappe-surface0);
+  --text-warning: var(--ctp-mocha-maroon);
+  --text-subtext: var(--ctp-mocha-overlay0);
+  --border-cl: var(--ctp-mocha-surface0);
   --background-base: var(--ctp-mocha-base);
-  --background-quote: var(--ctp-mocha-crust);
+  --background-quote: var(--ctp-mocha-mantle);
   --background-accent-alt: var(--ctp-latte-mauve);
   --background-accent: var(--ctp-frappe-mauve);
   --background-selection: 136, 57, 239;
 }
 
 pre {
-  background-color: #272822;
+  background-color: var(--ctp-mocha-crust) !important;
   line-height: 1.4;
   overflow-x: auto;
   padding: 1em;
