@@ -14,8 +14,8 @@
     <div class="warning">
       <blockquote>
         <p>
-      <strong>Warning:</strong> This post was last updated over {{ $diffDays }} days ago. Some of the information may be outdated.
-    </p>
+          <strong>Warning:</strong> This post was last updated {{ $diffDays }} days ago. Some of the information may be outdated.
+        </p>
       </blockquote>
     </div>
     {{ end }}
@@ -32,9 +32,9 @@
 		{{ .TableOfContents }}
 		</div>{{ end }}
 
-		<section class="body">
-			{{ .Content }}
-		</section>
+    <section class="body">
+      {{ .Content }}
+    </section>
 
 		<div class="post-tags">
 			{{ if ne .Type "page" }}
@@ -55,9 +55,9 @@
 		{{- $.Scratch.Set "isDisqus" false -}}
 		{{ end }}
 
-		{{- if eq ($.Scratch.Get "isDisqus") true -}}
-		{{- partial "disqus.html" . -}}
-		{{- end -}}
-	</article>
+    {{- if eq ($.Scratch.Get "isDisqus") true -}}
+    {{- partial "disqus.html" . -}}
+    {{- end -}}
+  </article>
 </main>
 {{ end }}
