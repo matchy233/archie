@@ -13,7 +13,7 @@
   --background-quote: var(--ctp-mocha-mantle);
   --background-accent-alt: var(--ctp-latte-mauve);
   --background-accent: var(--ctp-frappe-mauve);
-  --background-selection: 136, 57, 239;
+  --background-selection-rgb: 136, 57, 239;
 }
 
 pre {

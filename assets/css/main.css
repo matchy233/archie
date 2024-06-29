@@ -7,17 +7,17 @@
   --text-base-inv: var(--ctp-frappe-text);
   --text-strong: #000;
   --text-strong-inv: #fff;
+  --text-warning-strong: var(--ctp-latte-red);
+  --text-warning: #360000;
   --text-subtext: var(--ctp-latte-subtext0);
   --text-meta: var(--ctp-latte-overlay0);
   --border-cl: var(--ctp-latte-surface1);
-  --text-warning-strong: var(--ctp-latte-red);
-  --text-warning: #360000;
   --background-warning-rgb: 230, 69, 83;
   --background-base: var(--ctp-latte-base);
   --background-quote: var(--ctp-latte-crust);
   --background-accent: var(--ctp-frappe-mauve);
   --background-accent-alt: var(--ctp-frappe-lavender);
-  --background-selection: 184, 161, 225;
+  --background-selection-rgb: 184, 161, 225;
 }
 
 html {
@@ -29,20 +29,23 @@ html {
 }
 
 body {
-  // linear gradient from top left to bottom right with bg color accent and alt
   display: block;
   margin: 0;
 }
 * {
-  -webkit-tap-highlight-color: rgba(var(--background-selection), 0.5);
+  -webkit-tap-highlight-color: rgba(var(--background-selection-rgb), 0.5);
 }
 
 ::selection {
   color: var(--text-strong);
-  background-color: rgba(var(--background-selection), 0.7);
+  background-color: rgba(var(--background-selection-rgb), 0.5);
 }
 .meta::selection {
   color: var(--text-subtext);
+}
+.warning ::selection {
+  color: var(--text-warning);
+  background-color: rgba(var(--background-warning-rgb), 0.5);
 }
 
 p {
@@ -148,7 +151,8 @@ figure h4::before {
 code {
   font-family: "Fira Code", monospace;
   font-weight: 300;
-  background-color: rgb(var(--background-selection), 0.4);
+  font-size: 0.9rem;
+  background-color: rgb(var(--background-selection-rgb), 0.4);
   border-radius: 0.3em;
   color: var(--text-strong);
   padding: 0.1em 0.2em;
