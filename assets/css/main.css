@@ -10,19 +10,21 @@
   --text-subtext: var(--ctp-latte-subtext0);
   --text-meta: var(--ctp-latte-overlay0);
   --border-cl: var(--ctp-latte-surface1);
+  --text-warning-strong: var(--ctp-latte-red);
+  --text-warning: #360000;
+  --background-warning-rgb: 230, 69, 83;
   --background-base: var(--ctp-latte-base);
   --background-quote: var(--ctp-latte-crust);
   --background-accent: var(--ctp-frappe-mauve);
   --background-accent-alt: var(--ctp-frappe-lavender);
   --background-selection: 184, 161, 225;
-  /* --callouctcolor: dodgerblue; */
 }
 
 html {
   color: var(--text-base);
   font-family: "Roboto Mono", monospace;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.6em;
 }
 
@@ -64,6 +66,17 @@ blockquote p {
   /* width: 100%; */
   background-color: var(--background-quote);
   border-radius: 0 10px 10px 0;
+}
+
+.warning blockquote {
+  border-left: 5px solid var(--text-warning-strong);
+}
+.warning blockquote p {
+  color: var(--text-warning);
+  background-color: rgba(var(--background-warning-rgb), 0.3);
+}
+.warning strong {
+  color: var(--text-warning-strong);
 }
 
 a {
@@ -139,7 +152,6 @@ code {
 
 pre {
   border-radius: 0.4em;
-  background-color: #ececec;
   line-height: 1.4;
   overflow-x: auto;
   padding: 1em;
@@ -224,12 +236,12 @@ h5,
 h6 {
   color: var(--text-strong);
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: 2em;
 }
 
 h1 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
 }
 
 h1::before {
@@ -324,6 +336,7 @@ footer {
 
 time {
   color: var(--text-subtext);
+  font-size: 0.9rem;
 }
 
 /* Posts */

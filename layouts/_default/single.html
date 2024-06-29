@@ -5,6 +5,21 @@
 			<h1 class="title">{{ .Title }}</h1>
 			<div class="meta">Posted on {{ dateFormat ":date_medium" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
 		</div>
+
+    <!-- if lastmod is at least 6 months from now, show a warning -->
+
+    {{ $diff := now.Sub .Lastmod }}
+    {{ $diffDays := math.Round (div $diff.Hours 24) }}
+    {{ if ge $diffDays 180 }}
+    <div class="warning">
+      <blockquote>
+        <p>
+      <strong>Warning:</strong> This post was last updated over {{ $diffDays }} days ago. Some of the information may be outdated.
+    </p>
+      </blockquote>
+    </div>
+    {{ end }}
+
 		{{ if isset .Params "tldr" }}
 		<div class="tldr">
 			<strong>tl;dr:</strong>
