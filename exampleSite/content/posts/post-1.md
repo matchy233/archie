@@ -9,7 +9,9 @@ You have a to-do list that scrolls on for days. You are managing multiple projec
 
 It all keeps piling up, and it can feel overwhelming.
 
-How do you keep up with it all? How do you find focus and peace and get stuff accomplished when you have too much on your plate?
+How do you keep up with it all? How do you _find focus and peace and get stuff accomplished when you have too much on your plate_?
+
+---
 
 In this primer, I’ll look at some key strategies and tactics for taking on an overloaded life with an open heart, lots of energy, and a smile on your face.
 

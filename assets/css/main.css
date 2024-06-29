@@ -1,58 +1,88 @@
-/* Markdown */
-:root{
---maincolor: red;
---bordercl:rebeccapurple;
---callouctcolor:dodgerblue;
---hovercolor:navy;
---darkMaincolor: #50fa7b;
+/* Catppuccin */
+@import url("https://unpkg.com/@catppuccin/palette/css/catppuccin.css");
+
+:root {
+  --maincolor: #9557e6;
+  --text-base: var(--ctp-latte-text);
+  --text-base-inv: var(--ctp-frappe-text);
+  --text-strong: #000;
+  --text-strong-inv: #fff;
+  --text-subtext: var(--ctp-latte-subtext0);
+  --text-meta: var(--ctp-latte-overlay0);
+  --border-cl: var(--ctp-latte-surface1);
+  --background-base: var(--ctp-latte-base);
+  --background-quote: var(--ctp-latte-crust);
+  --background-accent: var(--ctp-frappe-mauve);
+  --background-accent-alt: var(--ctp-frappe-lavender);
+  --background-selection: 184, 161, 225;
+  /* --callouctcolor: dodgerblue; */
 }
+
 html {
-  color: #232333;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 15px;
+  color: var(--text-base);
+  font-family: "Roboto Mono", monospace;
+  font-weight: 400;
+  font-size: 1rem;
   line-height: 1.6em;
 }
-body{
+
+body {
+  // linear gradient from top left to bottom right with bg color accent and alt
   display: block;
-  margin: 8px;
+  margin: 0;
 }
 * {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: var(--text-strong);
 }
 
 ::selection {
-  background: var(--maincolor);
-  color: #fff;
+  color: var(--text-strong);
+  background-color: rgba(var(--background-selection), 0.7);
+}
+.meta::selection {
+  color: var(--text-subtext);
 }
 
 p {
-  font-family: 'Fira Sans', sans-serif;
   line-height: 1.5;
 }
 
 hr {
   border: 0;
-  border-top: 3px dotted var(--bordercl);
+  border-top: 3px dotted var(--border-cl);
   margin: 1em 0;
 }
 
 blockquote {
-  border-left: 3px solid var(--bordercl);
-  color: #737373;
+  border-left: 5px solid var(--border-cl);
+  color: var(--text-subtext);
   margin: 0;
-  padding-left: 1em;
+}
+blockquote p {
+  padding: 1.5rem 1rem;
+  height: 100%;
+  /* width: 100%; */
+  background-color: var(--background-quote);
+  border-radius: 0 10px 10px 0;
 }
 
 a {
-  border-bottom: 3px solid var(--maincolor);
-  color: inherit;
+  color: var(--text-strong);
+  background-size: 100% 180%;
+  box-shadow: inset 0 -2px 0 0 var(--maincolor);
+  transition: all 0.1s ease-in-out;
+  background-image: linear-gradient(
+    180deg,
+    transparent 50%,
+    var(--maincolor) 50%
+  );
   text-decoration: none;
 }
 a:hover {
-    background-color: var(--hovercolor);
-    color: #fff;
+  color: var(--text-strong-inv);
+  background-position: 0 100%;
+  transition: all 0.2s ease-in-out;
 }
-
 ul {
   list-style: none;
   padding-left: 2ch;
@@ -61,7 +91,7 @@ ul li {
   text-indent: -2ch;
 }
 ul > li::before {
-  content: '* ';
+  content: "* ";
   font-weight: bold;
 }
 
@@ -94,20 +124,29 @@ figure h4 {
   margin-bottom: 1em;
 }
 figure h4::before {
-  content: '↳ ';
+  content: "↳ ";
 }
 
 /* Code blocks */
 code {
-  background-color: #f1f1f1;
-  padding: .1em .2em;
+  font-family: "Fira Code", monospace;
+  font-weight: 300;
+  background-color: rgb(var(--background-selection), 0.4);
+  border-radius: 0.3em;
+  color: var(--text-strong);
+  padding: 0.1em 0.2em;
 }
 
 pre {
+  border-radius: 0.4em;
   background-color: #ececec;
   line-height: 1.4;
   overflow-x: auto;
   padding: 1em;
+}
+
+.highlight {
+  border-radius: 0.4em;
 }
 
 .highlight pre ::selection {
@@ -118,46 +157,124 @@ pre {
 pre code {
   background-color: transparent;
   color: inherit;
-  font-size: 100%;
+  font-size: 0.9rem;
   padding: 0;
 }
 
 /* Containers */
-.content {
-  margin-bottom: 4em;
+.backdrop {
+  background-color: var(--background-base);
+  /* background-image: radial-gradient(#f1f1f1 20%, transparent 20%),
+    radial-gradient(var(--ctp-frappe-rosewater) 20%, transparent 20%), linear-gradient(
+        to bottom right,
+        var(--background-accent-alt),
+        var(--background-accent)
+      );
+  background-position: 0 0, 50px 50px;
+  background-size: 100px 100px, 100px 100px, 100% 100%;
+  background-color: var(--background-accent);
+  min-height: 100vh; */
+}
+
+.container {
+  padding-bottom: 4em;
+  margin: 0;
   margin-left: auto;
   margin-right: auto;
-  max-width: 800px;
+  max-width: 768px;
   padding: 0 1ch;
   word-wrap: break-word;
 }
 
+.content {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  // height fill the container
+  height: 100%;
+  padding: 0 2em;
+}
+
+main {
+  height: 100%;
+  flex-grow: 1;
+}
+
 /* Header */
 header {
+  font-size: 1.25rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 1em 0;
-  line-height: 2.5em;
+  margin-top: 1em;
+  line-height: 4.5em;
+  border-bottom: 0.4rem dotted var(--border-cl);
 }
 
 header .main {
-  font-size: 1.5rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  font-size: 2.5rem;
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-strong);
+  font-weight: 400;
   font-size: 1.2rem;
   margin-top: 2em;
 }
 
-h1::before { color: var(--maincolor); content: '# '; }
-h2::before { color: var(--maincolor); content: '## '; }
-h3::before { color: var(--maincolor); content: '### '; }
-h4::before { color: var(--maincolor); content: '#### '; }
-h5::before { color: var(--maincolor); content: '##### '; }
-h6::before { color: var(--maincolor); content: '###### '; }
+h1 {
+  font-size: 1.25rem;
+}
+
+h1::before {
+  color: var(--maincolor);
+  content: "# ";
+}
+h2::before {
+  color: var(--maincolor);
+  content: "## ";
+}
+h3::before {
+  color: var(--maincolor);
+  content: "### ";
+}
+h4::before {
+  color: var(--maincolor);
+  content: "#### ";
+}
+h5::before {
+  color: var(--maincolor);
+  content: "##### ";
+}
+h6::before {
+  color: var(--maincolor);
+  content: "###### ";
+}
+
+em {
+  font-style: italic;
+  color: var(--text-strong);
+}
+strong {
+  font-weight: 500;
+  color: var(--text-strong);
+}
+
+.subtext {
+  color: var(--text-subtext);
+  margin: 0;
+}
 
 .meta {
-  color: #999;
+  font-size: 0.9rem;
+  color: var(--text-meta);
   letter-spacing: -0.5px;
 }
 
@@ -174,7 +291,7 @@ h6::before { color: var(--maincolor); content: '###### '; }
 footer {
   display: flex;
   align-items: center;
-  border-top: 0.4rem dotted var(--bordercl);
+  border-top: 0.4rem dotted var(--border-cl);
   padding: 2rem 0rem;
   margin-top: 2rem;
 }
@@ -191,6 +308,15 @@ footer {
 .footer-info {
   padding: var(--footer-padding);
 }
+.toggle-btn {
+  cursor: pointer;
+  color: var(--text-base);
+  transition: 0.2s ease-in-out;
+}
+.toggle-btn:hover {
+  color: var(--text-strong);
+  transition: 0.2s ease-in-out;
+}
 
 /* Common */
 .title h1 {
@@ -198,14 +324,13 @@ footer {
 }
 
 time {
-  color: grey;
+  color: var(--text-subtext);
 }
 
 /* Posts */
 article .title {
   margin-bottom: 1em;
 }
-
 
 /* Callout */
 .callout {
@@ -215,7 +340,7 @@ article .title {
 }
 
 .callout p {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   margin: 0;
 }
 
@@ -229,32 +354,26 @@ article .title {
 }
 
 .site-description {
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-.tags li::before{
-  content: "🏷 ";
+.tags li::before {
+  content: "🏷️ ";
 }
-.tags a{
-  border-bottom: 3px solid var(--maincolor); 
-}
-.tags a:hover{
-  color:white;
-  background-color: var(--hovercolor); 
-}
-svg{
+
+svg {
   max-height: 15px;
 }
-.soc:hover{
+.soc:hover {
   color: white;
 }
-.draft-label{ 
-    color: var(--bordercl);
-    text-decoration: none;
-    padding: 2px 4px;
-    border-radius: 4px;
-    margin-left: 6px;
-    background-color: #f9f2f4;
+.draft-label {
+  color: var(--text-strong);
+  text-decoration: none;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-left: 6px;
+  background-color: var(--background-accent-alt);
 }
 .highlight {
   position: relative;
@@ -277,51 +396,51 @@ svg{
   top: 0;
 }
 
-.highlight pre code[class=language-javaScript]::before,
+.highlight pre code[class="language-javaScript"]::before,
 .highlight pre code[class="language-js"]::before {
-content: "js";
-background: #f7df1e;
-color: black;
+  content: "js";
+  background: #f7df1e;
+  color: black;
 }
-.highlight pre code[class*='language-yml']::before,
-.highlight pre code[class*='language-yaml']::before {
-content: 'yaml';
-background: #f71e6a;
-color: white;
+.highlight pre code[class*="language-yml"]::before,
+.highlight pre code[class*="language-yaml"]::before {
+  content: "yaml";
+  background: #f71e6a;
+  color: white;
 }
-.highlight pre code[class*='language-shell']::before,
-.highlight pre code[class*='language-bash']::before,
-.highlight pre code[class*='language-sh']::before {
-content: 'shell';
-background: green;
-color:white
+.highlight pre code[class*="language-shell"]::before,
+.highlight pre code[class*="language-bash"]::before,
+.highlight pre code[class*="language-sh"]::before {
+  content: "shell";
+  background: green;
+  color: white;
 }
-.highlight pre code[class*='language-json']::before{
-content: 'json';
-background: dodgerblue;
- color: #000000 
+.highlight pre code[class*="language-json"]::before {
+  content: "json";
+  background: dodgerblue;
+  color: #000000;
 }
-.highlight pre code[class*='language-python']::before,
-.highlight pre code[class*='language-py']::before {
-content: 'py';
-background: blue;
-color: yellow ;
+.highlight pre code[class*="language-python"]::before,
+.highlight pre code[class*="language-py"]::before {
+  content: "py";
+  background: blue;
+  color: yellow;
 }
-.highlight pre code[class*='language-css']::before{
-content: 'css';
-background: cyan;
-color: black ;
+.highlight pre code[class*="language-css"]::before {
+  content: "css";
+  background: cyan;
+  color: black;
 }
-.highlight pre code[class*='language-go']::before{
-content: 'Go';
-background: cyan;
-color: royalblue ;
+.highlight pre code[class*="language-go"]::before {
+  content: "Go";
+  background: cyan;
+  color: royalblue;
 }
-.highlight pre code[class*='language-md']::before,
-.highlight pre code[class*='language-md']::before{
-content: 'Markdown';
-background: royalblue;
-color: whitesmoke ;
+.highlight pre code[class*="language-md"]::before,
+.highlight pre code[class*="language-md"]::before {
+  content: "Markdown";
+  background: royalblue;
+  color: whitesmoke;
 }
 
 /* table */
@@ -330,13 +449,13 @@ table {
   border-collapse: collapse;
 }
 
-table th{
+table th {
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
   font-size: large;
 }
 
-table td{
+table td {
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
 }

@@ -1,10 +1,14 @@
 {{ define "main" }}
+<main>
 {{ if isset .Data "Term" }}
 <h1>Entries tagged - "{{ .Data.Term }}"</h1>
 {{ else }}
-<h1 class="page-title">All articles</h1>
+<h1 class="page-title">Archive</h1>
 {{ end }}
 
+{{ range .Pages.GroupByDate "2006" }}
+<h2>{{ .Key }}</h2>
+<p class="subtext">{{ len .Pages }} posts</p>
 <ul class="posts">
 	{{- range .Data.Pages -}}
 		{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
@@ -14,4 +18,6 @@
 		{{- end -}}
 	{{- end -}}
 </ul>
+{{ end }}
+</main>
 {{ end }}
