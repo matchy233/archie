@@ -24,4 +24,4 @@ name = "Athul Cyriac Ajay"
 homepage = "https://github.com/athul"
 
 [frontmatter]
-lastmod = ["lastmod", ":fileModTime", ":git", ":default"]
+lastmod = [":git", "lastmod", ":fileModTime", ":default"]
