@@ -1,11 +1,12 @@
 {{ define "main" }}
 <main>
-	<article>
-		<div class="title">
-			<h1 class="title">{{ .Title }}</h1>
-			<div class="meta">Posted on {{ dateFormat "Jan 2, 2006" .Date }} | Updated on {{ dateFormat "Jan 2, 2006" .Lastmod }}
+  <article>
+    <div class="title">
+      <h1 class="title">{{ .Title }}</h1>
+      <div class="meta">
+        Posted on {{ dateFormat "Jan 2, 2006" .Date }} | Updated on {{ dateFormat "Jan 2, 2006" .Lastmod }}
         {{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
-		</div>
+    </div>
 
     <!-- if lastmod is at least 6 months from now, show a warning -->
 
@@ -15,44 +16,44 @@
     <div class="warning">
       <blockquote>
         <p>
-      <strong>Warning:</strong> This post was last updated over {{ $diffDays }} days ago. Some of the information may be outdated.
-    </p>
+          <strong>Warning:</strong> This post was last updated {{ $diffDays }} days ago. Some of the information may be outdated.
+        </p>
       </blockquote>
     </div>
     {{ end }}
 
-		{{ if isset .Params "tldr" }}
-		<div class="tldr">
-			<strong>tl;dr:</strong>
-			{{ .Params.tldr }}
-		</div>{{ end }}
+    {{ if isset .Params "tldr" }}
+    <div class="tldr">
+      <strong>tl;dr:</strong>
+      {{ .Params.tldr }}
+    </div>{{ end }}
 
-		<section class="body">
-			{{ .Content }}
-		</section>
+    <section class="body">
+      {{ .Content }}
+    </section>
 
-		<div class="post-tags">
-			{{ if ne .Type "page" }}
-			{{ if gt .Params.tags 0 }}
-			<nav class="nav tags">
-				<ul class="tags">
-					{{ range .Params.tags }}
-					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-					{{ end }}
-				</ul>
-			</nav>
-			{{ end }}
-			{{ end }}
-		</div>
-		{{- $.Scratch.Set "isDisqus" true -}}
-		<!-- Check if disqus short name is given -->
-		{{ if not .Site.DisqusShortname }}
-		{{- $.Scratch.Set "isDisqus" false -}}
-		{{ end }}
+    <div class="post-tags">
+      {{ if ne .Type "page" }}
+      {{ if gt .Params.tags 0 }}
+      <nav class="nav tags">
+        <ul class="tags">
+          {{ range .Params.tags }}
+          <li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+      {{ end }}
+      {{ end }}
+    </div>
+    {{- $.Scratch.Set "isDisqus" true -}}
+    <!-- Check if disqus short name is given -->
+    {{ if not .Site.DisqusShortname }}
+    {{- $.Scratch.Set "isDisqus" false -}}
+    {{ end }}
 
-		{{- if eq ($.Scratch.Get "isDisqus") true -}}
-		{{- partial "disqus.html" . -}}
-		{{- end -}}
-	</article>
+    {{- if eq ($.Scratch.Get "isDisqus") true -}}
+    {{- partial "disqus.html" . -}}
+    {{- end -}}
+  </article>
 </main>
 {{ end }}
