@@ -38,7 +38,7 @@ Lid est laborum et dolorum fuga, This is [an example](http://example.com/ "Title
 Following is the syntax highlighted code block
 
 ```go
-func getCookie(name string, r interface{}) (*http.Cookie, error) {
+func getCookie: (name string, r interface{}) -> (*http.Cookie, error) = {
 	rd := r.(*http.Request)
 	cookie, err := rd.Cookie(name)
 	if err != nil {
