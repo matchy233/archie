@@ -91,11 +91,14 @@ a {
   );
   text-decoration: none;
 }
+a:hover strong,
+a:hover em,
 a:hover {
   color: var(--text-strong-inv);
   background-position: 0 100%;
   transition: all 0.2s ease-in-out;
 }
+
 ul {
   list-style: none;
   padding-left: 2ch;
@@ -218,7 +221,7 @@ header {
   border-bottom: 0.4rem dotted var(--border-cl);
 }
 .header {
-    margin-top: 3em;
+  margin-top: 3em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -232,7 +235,7 @@ header .main {
 }
 
 header nav {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 h1,
