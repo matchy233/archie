@@ -202,7 +202,6 @@ main {
 
 /* Header */
 header {
-  font-size: 1.25rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -214,7 +213,7 @@ header {
 header .main {
   font-family: "IBM Plex Mono", monospace;
   font-weight: 700;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
 }
 
 h1,
