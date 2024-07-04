@@ -208,6 +208,7 @@ pre code {
 
 .content {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-flow: column;
   // height fill the container
