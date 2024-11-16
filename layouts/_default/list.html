@@ -10,7 +10,7 @@
 <h2>{{ .Key }}</h2>
 <p class="subtext">{{ len .Pages }} posts</p>
 <ul class="posts">
-	{{- range .Data.Pages -}}
+	{{- range .Pages -}}
 		{{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
 		<li class="post">
 			<a href="{{ .RelPermalink }}">{{.Title}}</a> <span class="meta">{{ dateFormat ":date_medium" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</span>
